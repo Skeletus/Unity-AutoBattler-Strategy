@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9675553
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
@@ -310,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5225337
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
@@ -730,6 +730,52 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &450913891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 450913892}
+  - component: {fileID: 450913893}
+  m_Layer: 0
+  m_Name: GridSystemVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &450913892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450913891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450913893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450913891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894c8049f63d4ac4294df4fdb2def467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSystemVisualSinglePrefab: {fileID: 5566190403639086750, guid: 8e42e25decd8fbd4d9d85678422a7b64,
+    type: 3}
 --- !u!1 &502547715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8701117704014557881, guid: 9d09e26579aaed24b8bd0509381385ff,
         type: 3}
@@ -1214,3 +1260,4 @@ SceneRoots:
   - {fileID: 1163618363}
   - {fileID: 1858588585}
   - {fileID: 1291044149}
+  - {fileID: 450913892}
