@@ -23,7 +23,7 @@ public class SpinAction : BaseAction
         transform.eulerAngles += new Vector3(0, spinAddAmount, 0);
 
         totalSpinAmount += spinAddAmount;
-        if(totalSpinAmount >= 160f)
+        if(totalSpinAmount >= 360f)
         {
             isActive = false;
         }
