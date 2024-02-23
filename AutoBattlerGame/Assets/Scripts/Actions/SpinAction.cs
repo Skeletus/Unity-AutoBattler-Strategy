@@ -49,4 +49,9 @@ public class SpinAction : BaseAction
         isActive = true;
         totalSpinAmount = 0f;
     }
+
+    public override int GetActionPointCost()
+    {
+        return 2;
+    }
 }
