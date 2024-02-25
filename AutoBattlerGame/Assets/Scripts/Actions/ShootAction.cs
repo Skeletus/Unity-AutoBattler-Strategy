@@ -154,4 +154,9 @@ public class ShootAction : BaseAction
         canShootBullet = true;
         ActionStart(onActionComplete);
     }
+
+    public Unit GetTargetUnit()
+    {
+        return targetUnit;
+    }
 }
