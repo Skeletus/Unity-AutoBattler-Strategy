@@ -23,11 +23,18 @@ public class UnitAnimator : MonoBehaviour
         }
     }
 
-    private void ShootAction_OnShoot(object sender, EventArgs e)
+    private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {
         animator.SetTrigger("Shoot");
 
-        Instantiate(bulletProjectilePrefab, shootPointTransform.position, Quaternion.identity);
+        Transform bulletProjectileTransform = 
+            Instantiate(bulletProjectilePrefab,
+            shootPointTransform.position, Quaternion.identity);
+        BulletProjectile bulletProjectile = bulletProjectileTransform.GetComponent<BulletProjectile>();
+
+        Vector3 targetUnitShootAtPosition = e.targetUnit.GetWorldPosition();
+        targetUnitShootAtPosition.y = shootPointTransform.position.y;
+        bulletProjectile.Setup(targetUnitShootAtPosition);
     }
 
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
