@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8701117704014557881}
+  - component: {fileID: -2425834427441368066}
   m_Layer: 7
   m_Name: UnitRagdoll
   m_TagString: Untagged
@@ -63,6 +64,19 @@ Transform:
   - {fileID: 6365702648908465515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2425834427441368066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968659276871352230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f61c72dc81fe5147a22cf41bc190a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdollRootBone: {fileID: 6365387443274551665}
 --- !u!1001 &5046935633540899350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1679,6 +1693,12 @@ CharacterJoint:
 --- !u!4 &6361637535691776545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4170833147357194, guid: 2f3e27eecb190e44a9af50723c394274,
+    type: 3}
+  m_PrefabInstance: {fileID: 6361267385811946027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6365387443274551665 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4966341056781146, guid: 2f3e27eecb190e44a9af50723c394274,
     type: 3}
   m_PrefabInstance: {fileID: 6361267385811946027}
   m_PrefabAsset: {fileID: 0}
