@@ -6,6 +6,8 @@ using UnityEngine;
 public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform bulletProjectilePrefab;
+    [SerializeField] private Transform shootPointTransform;
 
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class UnitAnimator : MonoBehaviour
     private void ShootAction_OnShoot(object sender, EventArgs e)
     {
         animator.SetTrigger("Shoot");
+
+        Instantiate(bulletProjectilePrefab, shootPointTransform.position, Quaternion.identity);
     }
 
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
