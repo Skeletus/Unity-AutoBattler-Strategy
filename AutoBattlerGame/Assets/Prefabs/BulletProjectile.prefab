@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 3057525395180611437}
+  bulletHitVFXPrefab: {fileID: 8007406403830976742, guid: 34ae3e88e63fdc74383b97ef6f6261f5,
+    type: 3}
 --- !u!1 &6490767504394797942
 GameObject:
   m_ObjectHideFlags: 0
