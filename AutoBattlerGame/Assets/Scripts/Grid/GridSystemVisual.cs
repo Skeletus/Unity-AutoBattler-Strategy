@@ -19,7 +19,8 @@ public class GridSystemVisual : MonoBehaviour
         White,
         Blue,
         Red,
-        Yellow
+        RedSoft,
+        Yellow,
     }
 
     [SerializeField] private Transform gridSystemVisualSinglePrefab;
@@ -98,6 +99,34 @@ public class GridSystemVisual : MonoBehaviour
         }
     }
 
+    private void ShowGridPositionRange(GridPosition gridPosition, int range, GridVisualType gridVisualType)
+    {
+        List<GridPosition> gridPositionlist = new List<GridPosition>();
+
+        for ( int x = -range; x <= range; x++)
+        {
+            for ( int z = -range; z <= range; z++)
+            {
+                GridPosition testGridPosition = gridPosition + new GridPosition(x, z);
+
+                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+                {
+                    continue;
+                }
+
+                int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
+                if (testDistance > range)
+                {
+                    continue;
+                }
+
+                gridPositionlist.Add(testGridPosition);
+            }
+        }
+
+        ShowGridPositionList(gridPositionlist, gridVisualType);
+    }
+
     public void ShowGridPositionList(List<GridPosition> gridPositionList, GridVisualType gridVisualType)
     {
         foreach(GridPosition gridPosition in gridPositionList)
@@ -110,6 +139,7 @@ public class GridSystemVisual : MonoBehaviour
     {
         HideAllGridPositions();
 
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
         BaseAction selectedAction = UnitActionSystem.Instance.GetSelectedAction();
 
         GridVisualType gridVisualType;
@@ -124,6 +154,7 @@ public class GridSystemVisual : MonoBehaviour
                 break;
             case ShootAction shootAction:
                 gridVisualType = GridVisualType.Red;
+                ShowGridPositionRange(selectedUnit.GetGridPosition(), shootAction.GetMaxShootDistance(), GridVisualType.RedSoft);
                 break;
 
         }
