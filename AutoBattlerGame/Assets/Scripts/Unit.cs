@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
     private BaseAction[] baseActionArray;
     private int actionPoints = ACTION_PONITS_MAX;
 
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDead;
     public static event EventHandler OnAnyActionPointsChanged;
 
     private void Awake()
@@ -35,6 +37,8 @@ public class Unit : MonoBehaviour
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
         healthSystem.OnDead += healthSystem_OnDead;
+
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     // Update is called once per frame
@@ -56,6 +60,7 @@ public class Unit : MonoBehaviour
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
         Destroy(gameObject);
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
     }
 
     public MoveAction GetMoveAction()
