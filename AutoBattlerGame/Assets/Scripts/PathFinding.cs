@@ -178,6 +178,25 @@ public class PathFinding : MonoBehaviour
 
     private List<GridPosition> CalculePath(PathNode endNode)
     {
-        throw new NotImplementedException();
+        List<PathNode> pathNodeList = new List<PathNode>();
+        pathNodeList.Add(endNode);
+
+        PathNode currentNode = endNode;
+
+        while(currentNode.GetCameFromPathNode() != null)
+        {
+            pathNodeList.Add(currentNode.GetCameFromPathNode());
+            currentNode = currentNode.GetCameFromPathNode();
+        }
+
+        pathNodeList.Reverse();
+
+        List<GridPosition> gridPositionList = new List<GridPosition>();
+        foreach(PathNode pathNode in pathNodeList)
+        {
+            gridPositionList.Add(pathNode.GetGridPosition());
+        }
+
+        return gridPositionList;
     }
 }

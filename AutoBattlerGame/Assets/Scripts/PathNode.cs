@@ -54,6 +54,11 @@ public class PathNode : MonoBehaviour
         this.cameFromPathNode = pathNode;
     }
 
+    public PathNode GetCameFromPathNode()
+    {
+        return cameFromPathNode;
+    }
+
     public void ResetCameFromPathNode()
     {
         cameFromPathNode = null;
