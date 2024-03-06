@@ -49,6 +49,11 @@ public class PathNode : MonoBehaviour
         this.hCost = hCost;
     }
 
+    public void SetCameFromPathNode(PathNode pathNode)
+    {
+        this.cameFromPathNode = pathNode;
+    }
+
     public void ResetCameFromPathNode()
     {
         cameFromPathNode = null;
