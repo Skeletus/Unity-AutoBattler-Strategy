@@ -53,22 +53,51 @@ public class PathFinding : MonoBehaviour
 
         GridPosition gridPosition = currentNode.GetGridPosition();
 
-        // left
-        neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 0));
-        // left down
-        neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z - 1));
-        // left up
-        neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 1));
-        // right
-        neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 0));
-        // right down
-        neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z - 1));
-        // right up
-        neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 1));
-        // up
-        neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z + 1));
-        // down 
-        neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z - 1));
+        if (gridPosition.x - 1 >= 0)
+        {
+            // left
+            neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 0));
+            if (gridPosition.z - 1 >= 0)
+            {
+                // left down
+                neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z - 1));
+            }
+            if (gridPosition.z + 1 < gridSystem.GetHeight())
+            {
+                // left up
+                neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 1));
+            }
+            
+        }
+
+        if (gridPosition.x + 1 < gridSystem.GetWidth())
+        {
+            // right
+            neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 0));
+            if (gridPosition.z - 1 >= 0)
+            {
+                // right down
+                neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z - 1));
+            }
+            if (gridPosition.z + 1 < gridSystem.GetHeight())
+            {
+                // right up
+                neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 1));
+            }
+            
+        }
+
+        if (gridPosition.z - 1 >= 0)
+        {
+            // down 
+            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z - 1));
+        }
+        if (gridPosition.z + 1 < gridSystem.GetHeight())
+        {
+            // up
+            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z + 1));
+        }
+        
 
         return neighbourList;
     }
