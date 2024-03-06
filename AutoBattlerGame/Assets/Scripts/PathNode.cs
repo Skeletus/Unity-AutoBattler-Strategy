@@ -53,4 +53,9 @@ public class PathNode : MonoBehaviour
     {
         cameFromPathNode = null;
     }
+
+    public GridPosition GetGridPosition()
+    {
+        return gridPosition;
+    }
 }
