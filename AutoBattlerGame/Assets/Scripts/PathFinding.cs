@@ -38,6 +38,9 @@ public class PathFinding : MonoBehaviour
         gridSystem = new GridSystem<PathNode>(width, height, cellSize,
             (GridSystem<PathNode> g, GridPosition gridPosition) => new PathNode(gridPosition));
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+
+        GetNode(1, 0).SetIsWalkable(false);
+        GetNode(1, 1).SetIsWalkable(false);
     }
 
     public int CalculateDistance(GridPosition gridPositionA, GridPosition gridPositionB)
@@ -168,6 +171,12 @@ public class PathFinding : MonoBehaviour
             {
                 if (closedList.Contains(neighbourNode))
                 {
+                    continue;
+                }
+
+                if (!neighbourNode.IsWalkable())
+                {
+                    closedList.Add(neighbourNode);
                     continue;
                 }
 
