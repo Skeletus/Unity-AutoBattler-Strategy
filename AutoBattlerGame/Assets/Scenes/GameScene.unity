@@ -3411,7 +3411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29949534, y: 0.08312379, z: -0.026202463, w: 0.95010865}
+  m_LocalRotation: {x: 0.29949534, y: 0.08312374, z: -0.02620245, w: 0.95010865}
   m_LocalPosition: {x: -0.7364826, y: 7, z: -9.548078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4673,6 +4673,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridDebugObjectPrefab: {fileID: 7597289186062797277, guid: 9b009e8f25349cf4bb44d29910f64148,
     type: 3}
+  width: 10
+  height: 10
+  cellSize: 2
 --- !u!4 &1163618363
 Transform:
   m_ObjectHideFlags: 0
@@ -5671,7 +5674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858588583}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29949534, y: 0.08312379, z: -0.026202463, w: 0.95010865}
+  m_LocalRotation: {x: 0.29949534, y: 0.08312374, z: -0.02620245, w: 0.95010865}
   m_LocalPosition: {x: -0.7364826, y: 7, z: -9.548078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
