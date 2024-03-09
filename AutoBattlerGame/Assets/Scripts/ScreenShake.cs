@@ -5,18 +5,25 @@ using Cinemachine;
 
 public class ScreenShake : MonoBehaviour
 {
+    public static ScreenShake Instance {  get; private set; }
+
     private CinemachineImpulseSource cinemachineImpulseSource;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("more than one screen shake instance");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    private void Update()
+    public void Shake(float intesity = 1f)
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            cinemachineImpulseSource.GenerateImpulse();
-        }
+        cinemachineImpulseSource.GenerateImpulse(intesity);
     }
 }
