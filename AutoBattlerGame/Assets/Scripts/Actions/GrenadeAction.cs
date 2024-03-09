@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GrenadeAction : BaseAction
 {
+    [SerializeField] private Transform grenadeProjectilePrefab;
+
     private int maxThrowDistance = 7;
 
     private void Update()
@@ -64,7 +66,10 @@ public class GrenadeAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        Debug.Log("GrenadeAction");
+        Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
+        GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
+        grenadeProjectile.Setup(gridPosition);
+
         ActionStart(onActionComplete);
     }
 }
