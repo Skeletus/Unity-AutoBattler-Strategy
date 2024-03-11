@@ -8,6 +8,7 @@ public class GrenadeProjectile : MonoBehaviour
     public static event EventHandler OnAnyGrenadeExploded;
 
     [SerializeField] private Transform grenadeExplodeVFXPrefab;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private Vector3 targetPosition;
     private Action OnGrenadeBehaviourComplete;
@@ -34,6 +35,8 @@ public class GrenadeProjectile : MonoBehaviour
             }
 
             OnAnyGrenadeExploded?.Invoke(this, EventArgs.Empty);
+
+            trailRenderer.transform.parent = null;
 
             Instantiate(grenadeExplodeVFXPrefab, targetPosition + Vector3.up * 1f, Quaternion.identity);
 
