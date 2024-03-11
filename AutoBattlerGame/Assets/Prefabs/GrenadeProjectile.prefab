@@ -128,3 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d35e30abfaca04ebb824cd25be983e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeExplodeVFXPrefab: {fileID: 8007406403830976742, guid: 01745ce6228a777458297dc833c563df,
+    type: 3}
