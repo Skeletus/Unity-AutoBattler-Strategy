@@ -9,16 +9,25 @@ public class GrenadeProjectile : MonoBehaviour
 
     [SerializeField] private Transform grenadeExplodeVFXPrefab;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private AnimationCurve arcYAnimationCurve;
 
     private Vector3 targetPosition;
     private Action OnGrenadeBehaviourComplete;
+    private float totalDistance;
+    private Vector3 positionXZ;
 
     private void Update()
     {
-        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+        Vector3 moveDirection = (targetPosition - positionXZ).normalized;
         float moveSpeed = 15f;
 
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        positionXZ += moveDirection * moveSpeed * Time.deltaTime;
+
+        float distance = Vector3.Distance(positionXZ, targetPosition);
+        float distanceNormalized = 1 - distance / totalDistance;
+
+        float positionY = arcYAnimationCurve.Evaluate(distanceNormalized);
+        transform.position = new Vector3(positionXZ.x, positionY, positionXZ.z);
 
         float reachedTargetDistance = .2f;
         if (Vector3.Distance(transform.position, targetPosition) < reachedTargetDistance)
@@ -50,5 +59,9 @@ public class GrenadeProjectile : MonoBehaviour
     {
         this.OnGrenadeBehaviourComplete = OnGrenadeBehaviourComplete;
         targetPosition = LevelGrid.Instance.GetWorldPosition(targetGridPosition);
+
+        positionXZ = transform.position;
+        positionXZ.y = 0;
+        totalDistance = Vector3.Distance(positionXZ, targetPosition);
     }
 }
