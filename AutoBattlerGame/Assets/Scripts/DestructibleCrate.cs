@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class DestructibleCrate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Damage()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject);
     }
 }
