@@ -265,4 +265,135 @@ public class PathFinding : MonoBehaviour
         FindPath(startGridPosition, endGridPosition, out int pathLength);
         return pathLength;
     }
+
+    /* testing DFS */
+
+    public bool HasPathDFS(GridPosition startGridPosition, GridPosition endGridPosition)
+    {
+        return DepthFirstSearch(startGridPosition, endGridPosition, out int pathLength) != null;
+    }
+
+    public int GetDFSPathLength(GridPosition startGridPosition, GridPosition endGridPosition)
+    {
+        DepthFirstSearch(startGridPosition, endGridPosition, out int pathLength);
+        return pathLength;
+    }
+
+    public List<GridPosition> DepthFirstSearch(GridPosition startGridPosition, GridPosition endGridPosition, out int pathLength)
+    {
+        PathNode start = gridSystem.GetGridObject(startGridPosition);
+        PathNode endNode = gridSystem.GetGridObject(endGridPosition);
+
+        for (int x = 0; x < gridSystem.GetWidth(); x++)
+        {
+            for (int z = 0; z < gridSystem.GetHeight(); z++)
+            {
+                GridPosition gridPosition = new GridPosition(x, z);
+                PathNode pathNode = gridSystem.GetGridObject(gridPosition);
+                pathNode.ResetCameFromPathNode();
+            }
+        }
+
+        HashSet<PathNode> visited = new HashSet<PathNode>();
+        visited.Add(start);
+
+        Stack<PathNode> frontier = new Stack<PathNode>();
+        frontier.Push(start);
+
+        start.ResetCameFromPathNode();
+
+        while (frontier.Count > 0)
+        {
+            PathNode current = frontier.Pop();
+
+            if (current == endNode)
+            {
+                pathLength = 1;
+                return BacktrackToPath(endNode);
+            }
+
+            foreach (PathNode neighborNode in GetNeighbourDFSList(current))
+            {
+                if (visited.Contains(neighborNode))
+                {
+                    continue;
+                }
+
+                if (!neighborNode.IsWalkable())
+                {
+                    visited.Add(neighborNode);
+                    continue;
+                }
+
+                if (!visited.Contains(neighborNode))
+                {
+                    visited.Add(neighborNode);
+                    frontier.Push(neighborNode);
+
+                    neighborNode.SetCameFromPathNode(current);
+                }
+            }
+        }
+
+        pathLength = 0;
+        return null;
+    }
+
+    private List<GridPosition> BacktrackToPath(PathNode endNode)
+    {
+        List<PathNode> pathNodeList = new List<PathNode>();
+        pathNodeList.Add(endNode);
+
+        PathNode currentNode = endNode;
+
+        while (currentNode.GetCameFromPathNode() != null)
+        {
+            pathNodeList.Add(currentNode.GetCameFromPathNode());
+            currentNode = currentNode.GetCameFromPathNode();
+        }
+
+        pathNodeList.Reverse();
+
+        List<GridPosition> gridPositionList = new List<GridPosition>();
+        foreach (PathNode pathNode in pathNodeList)
+        {
+            gridPositionList.Add(pathNode.GetGridPosition());
+        }
+
+        return gridPositionList;
+    }
+
+    private List<PathNode> GetNeighbourDFSList(PathNode currentNode)
+    {
+        List<PathNode> neighbourList = new List<PathNode>();
+
+        GridPosition gridPosition = currentNode.GetGridPosition();
+
+        if (gridPosition.x - 1 >= 0)
+        {
+            // left
+            neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 0));
+
+        }
+
+        if (gridPosition.x + 1 < gridSystem.GetWidth())
+        {
+            // right
+            neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 0));
+        }
+
+        if (gridPosition.z - 1 >= 0)
+        {
+            // down 
+            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z - 1));
+        }
+        if (gridPosition.z + 1 < gridSystem.GetHeight())
+        {
+            // up
+            neighbourList.Add(GetNode(gridPosition.x + 0, gridPosition.z + 1));
+        }
+
+
+        return neighbourList;
+    }
 }

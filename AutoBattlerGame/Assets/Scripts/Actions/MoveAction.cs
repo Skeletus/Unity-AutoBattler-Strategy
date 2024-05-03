@@ -9,7 +9,7 @@ public class MoveAction : BaseAction
     public event EventHandler OnStartMoving;
     public event EventHandler OnStopMoving;
 
-    [SerializeField] private int maxMoveDistance = 4;
+    [SerializeField] private int maxMoveDistance = 10;
 
     private List<Vector3> positionList;
     private int currentPositionIndex;
@@ -49,18 +49,21 @@ public class MoveAction : BaseAction
                     continue;
                 }
 
-                if (!PathFinding.Instance.HasPath(unitGridPosition, testGridPosition))
+                
+                if (!PathFinding.Instance.HasPathDFS(unitGridPosition, testGridPosition))
                 {
                     continue;
                 }
 
+                /*
                 int pathfindingDistanceMultiplier = 10;
                 if (PathFinding.Instance.GetPathLength(unitGridPosition, testGridPosition)
-                    > maxMoveDistance *pathfindingDistanceMultiplier)
+                    > maxMoveDistance * pathfindingDistanceMultiplier)
                 {
                     // path length it's too long
                     continue;
                 }
+                */
 
                 validGridPositionList.Add(testGridPosition);
             }
@@ -115,7 +118,8 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        List<GridPosition> pathGridPositionList = PathFinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
+        //List<GridPosition> pathGridPositionList = PathFinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
+        List<GridPosition> pathGridPositionList = PathFinding.Instance.DepthFirstSearch(unit.GetGridPosition(), gridPosition, out int pathLength);
 
         currentPositionIndex = 0;
         positionList = new List<Vector3>();
